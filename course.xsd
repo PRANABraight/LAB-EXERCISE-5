@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="course">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Course-->
+                <xs:element name="lesson" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title" type="TitleType"/>
+                            <xs:element name="instructor" type="xs:string"/>
+                            <!-- Duration -->
+                            <xs:element name="duration">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[0-9]+ weeks"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <!-- Price -->
+                            <xs:element name="price">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="\d+ USD"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="rating" type="xs:string"/>
+                            <xs:element name="certificate" type="CertificateType"/>
+                            <xs:element name="quiz" type="QuizType"/>
+                            <xs:element name="description" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- User -->
+                <xs:element name="user" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="user_id">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">                                       
+                                        <xs:pattern value="[0-9][0-9][0-9][0-9][A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z][0-9][0-9][0-9][0-9]"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="name">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                        <xs:minLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="email" type="xs:string">     </xs:element>
+                            <xs:element name="password">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="8"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="date">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:date"/>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="country" type="countryType"/>
+                            <xs:element name="subscriptionType" type="xs:string"/>
+                            <xs:element name="payment" type="PaymentType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Quiz -->
+                <xs:element name="quiz" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="quiz_id" type="xs:string"/>
+                            <xs:element name="lesson_id" type="xs:string"/>
+                            <xs:element name="quiz" type="xs:string"/>
+                            <xs:element name="question" type="xs:string"/>
+                            <xs:element name="answer" type="xs:string"/>
+                            <xs:element name="attempt_allowed" type="xs:positiveInteger"/>
+                            <xs:element name="time_limit" type="xs:string"/>
+                            <xs:element name="passmark" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Certificate -->
+                <xs:element name="certificate" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="cert_id" type="xs:string"/>
+                            <xs:element name="quiz_id" type="xs:string"/>
+                            <xs:element name="user_id" type="xs:string"/>
+                            <xs:element name="lesson_id" type="xs:string"/>
+                            <xs:element name="quiz_attempt" type="xs:positiveInteger"/>
+                            <xs:element name="quiz_result" type="xs:string"/>
+                            <xs:element name="issue_date" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Feedback -->
+                <xs:element name="feedback" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="feedback_id" type="xs:string"/>
+                            <xs:element name="user_id" type="xs:string"/>
+                            <xs:element name="subject" type="xs:string"/>
+                            <xs:element name="ftext" type="xs:string"/>
+                            <xs:element name="date" type="xs:date"/>
+                            <xs:element name="lesson_id" type="xs:string"/>
+                            <xs:element name="rate" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Types -->
+    <xs:complexType name="TitleType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attribute name="lang" type="xs:string" default="HTML"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="CertificateType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="cid" type="xs:ID" use="required"/>
+                <xs:attribute name="want" type="xs:string" default="Yes"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="QuizType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="qid" type="xs:ID"/>
+                <xs:attribute name="compulsory" type="xs:string" default="No"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="PaymentType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="pid" type="xs:ID" use="required"/>
+                <xs:attribute name="paid" type="xs:string" default="Credit-Card"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="countryType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="continent" type="xs:string"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+</xs:schema>

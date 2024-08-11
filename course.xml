@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="course.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-stylesheet type="text/xsl" href="course.xsl"?>
+
+<!DOCTYPE course [
+    <!ENTITY lessonTitle1 "Introduction to XML">
+    <!ENTITY lessonTitle2 "Advanced XML Techniques">
+    <!ENTITY instructorName1 "Jane Doe">
+    <!ENTITY instructorName2 "John Smith">
+    <!ENTITY lessonDuration1 "4 weeks">
+    <!ENTITY lessonDuration2 "6 weeks">
+    <!ENTITY lessonPrice1 "100 USD">
+    <!ENTITY lessonPrice2 "150 USD">
+    <!ENTITY lessonRating1 "4.5">
+    <!ENTITY lessonRating2 "4.8">
+    <!ENTITY certificateAvailability1 "Yes">
+    <!ENTITY certificateAvailability2 "Yes">
+    <!ENTITY quiz1 "Quiz for XML">
+    <!ENTITY quiz2 "Not Compulsory">
+    <!ENTITY subs1 "Premium">
+    <!ENTITY password1 "password123">
+    <!ENTITY password2 "passtheword876">
+]>
+
+<course>
+    <lesson>
+        <title id="t1" lang="Python">&lessonTitle1;</title>
+        <instructor>&instructorName1;</instructor>
+        <duration>&lessonDuration1;</duration>
+        <price>&lessonPrice1;</price>
+        <rating>&lessonRating1;</rating>
+        <certificate cid="c1" want="Yes">&certificateAvailability1;</certificate>
+        <quiz qid="q1" compulsory="Yes">&quiz1;</quiz>
+    </lesson>
+    <lesson>
+        <title id="t2" lang="XML">&lessonTitle2;</title>
+        <instructor>&instructorName2;</instructor>
+        <duration>&lessonDuration2;</duration>
+        <price>&lessonPrice2;</price>
+        <rating>&lessonRating2;</rating>
+        <certificate cid="c2" want="Yes">&certificateAvailability2;</certificate>
+        <quiz qid="q2" compulsory="Yes">Quiz for Advanced XML</quiz>
+    </lesson>
+
+    <lesson>
+        <title id="t3" lang="HTML">HTML/CSS</title>
+        <instructor>Mary Lamb</instructor>
+        <duration>8 weeks</duration>
+        <price>10 USD</price>
+        <rating>4.7</rating>
+        <certificate cid="c3" want="No">No</certificate>
+        <quiz qid="q3" compulsory="No">&quiz2;</quiz>
+    </lesson>
+
+    <user>
+        <user_id>0982POjsk1231</user_id>
+        <name>Pranab Rai</name>
+        <email>pranab.rai@gmail.com</email>
+        <password>&password1;</password>
+        <date>2004-07-29</date>
+        <country continent="Asia">India</country>
+        <subscriptionType>&subs1;</subscriptionType>
+        <payment pid="p1" paid="Credit-Card">100 USD</payment>
+    </user>
+
+    <user>
+        <user_id>1234acbde5678</user_id>
+        <name>Jane Doe</name>
+        <email>jane.doe@gmail.com</email>
+        <password>&password2;</password>
+        <date>1984-11-09</date>
+        <country continent="Asia">India</country>
+        <subscriptionType>&subs1;</subscriptionType>
+        <payment pid="p2" paid="Yes">Not Applicable</payment>
+    </user>
+
+    <quiz>
+        <quiz_id>123gjk090</quiz_id>
+        <lesson_id>t1</lesson_id>
+        <quiz>&quiz1;</quiz>
+        <question>Question 1, Question 2</question>
+        <answer>Answer 1, Answer 2</answer>
+        <attempt_allowed>10</attempt_allowed>
+        <time_limit>1 hr</time_limit>
+        <passmark>60%</passmark>
+    </quiz>
+
+    <certificate>
+        <cert_id>123opp221</cert_id>
+        <quiz_id>123gjk090</quiz_id>
+        <user_id>0982POjsk1231</user_id>
+        <lesson_id>t1</lesson_id>
+        <quiz_attempt>1</quiz_attempt>
+        <quiz_result>"Qualified"</quiz_result>
+        <issue_date>2024-08-09</issue_date>
+    </certificate>
+
+    <feedback>
+        <feedback_id>123pop223</feedback_id>
+        <user_id>0982POjsk1231</user_id>
+        <subject>Done with course</subject>
+        <ftext>Great Class, fun and interactive.</ftext>
+        <date>2021-02-02</date>
+        <lesson_id>t1</lesson_id>
+        <rate>4.5</rate>
+    </feedback>
+</course>

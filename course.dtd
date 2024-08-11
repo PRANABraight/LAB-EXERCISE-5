@@ -1,0 +1,83 @@
+<!-- Entity Definitions -->
+<!ENTITY lessonTitle1 "Introduction to XML">
+<!ENTITY lessonTitle2 "Advanced XML Techniques">
+<!ENTITY instructorName1 "Jane Doe">
+<!ENTITY instructorName2 "John Smith">
+<!ENTITY lessonDuration1 "4 weeks">
+<!ENTITY lessonDuration2 "6 weeks">
+<!ENTITY lessonPrice1 "100 USD">
+<!ENTITY lessonPrice2 "150 USD">
+<!ENTITY lessonRating1 "4.5">
+<!ENTITY lessonRating2 "4.8">
+<!ENTITY certificateAvailability1 "Yes">
+<!ENTITY certificateAvailability2 "No">
+<!ENTITY quiz1 "Quiz for XML">
+<!ENTITY quiz2 "Not Compulsory">
+<!ENTITY subs1 "Premium">
+
+<!-- Elements Definitions -->
+<!ELEMENT course (lesson+, user*, kuiz*, certificate*, feedback*)>
+
+<!-- Lesson Element -->
+<!ELEMENT lesson (title, instructor, duration, price, rating, certificate, quiz, description?)>
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title id ID #REQUIRED
+                  lang (HTML|CSS|JavaScript|Python) "Python">
+
+<!ELEMENT instructor (#PCDATA)>
+<!ELEMENT duration (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT rating (#PCDATA)>
+<!ELEMENT certificate (#PCDATA)>
+<!ATTLIST certificate cid ID #REQUIRED
+                  want (Yes|No) "Yes">
+
+<!ELEMENT quiz (#PCDATA)>
+<!ATTLIST quiz qid ID #IMPLIED
+                  compulsory (Yes|No) "No">
+
+<!ELEMENT description (#PCDATA)>
+
+<!-- User Element -->
+<!ELEMENT user (user_id, name, email, password, date, country, subscriptionType, payment)>
+<!ELEMENT user_id (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name nid ID #REQUIRED>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ATTLIST country continent (Asia|Europe|North-America|South-America|Australia|Africa) "Asia">
+<!ELEMENT subscriptionType (#PCDATA)>
+<!ELEMENT payment (#PCDATA)>
+<!ATTLIST payment pid ID #REQUIRED
+                  paid (Pay-Pal|Credit-Card|EMI) "Credit-Card">
+
+<!-- Quiz Element -->
+<!ELEMENT quiz (quiz_id, lesson_id, question, answer, attempt_allowed, time_limit, passmark)>
+<!ELEMENT quiz_id (#PCDATA)>
+<!ELEMENT lesson_id (#PCDATA)>
+<!ELEMENT question (#PCDATA)>
+<!ELEMENT answer (#PCDATA)>
+<!ELEMENT attempt_allowed (#PCDATA)>
+<!ELEMENT time_limit (#PCDATA)>
+<!ELEMENT passmark (#PCDATA)>
+
+<!-- Certificate Element -->
+<!ELEMENT certificate (cert_id, user_id, quiz_id, lesson_id, quiz_attempt, quiz_result, issue_date)>
+<!ELEMENT cert_id (#PCDATA)>
+<!ELEMENT quiz_id (#PCDATA)>
+<!ELEMENT user_id (#PCDATA)>
+<!ELEMENT lesson_id (#PCDATA)>
+<!ELEMENT quiz_attempt (#PCDATA)>
+<!ELEMENT quiz_result (#PCDATA)>
+<!ELEMENT issue_date (#PCDATA)>
+
+<!-- Feedback Element -->
+<!ELEMENT feedback (feedback_id, user_id, subject, ftext, date, lesson_id, rate)>
+<!ELEMENT feedback_id (#PCDATA)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT ftext (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT lesson_id (#PCDATA)>
+<!ELEMENT rate (#PCDATA)>
